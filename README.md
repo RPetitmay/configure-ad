@@ -21,8 +21,8 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 - Create Resource Group, Virtual Network and Subnet within Azure
 - Create a Domain Controller virtual machine within Azure portal
-- Create a client virtual machine
-- Step 4
+- Create and configure a Client virtual machine
+- Login into Client VM and ping (run "ipconfig /all") within Powershell as an admin
 
 <h2>Deployment and Configuration Steps</h2>
 
