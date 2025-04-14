@@ -33,9 +33,35 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-<h3>Active Directory Installation</h3>
+<h3>Active Directory Installation/Setting up new forest for domain controller</h3>
 <p>
-Logon to DC Vm. Go to start menu and search/find Server Manager Application and open it. Once booted, remove pop-up, then select "Add roles and features". After click next until to reach the Server Roles tab on the left side, select "Active Directory Domain Services"  after that select "Add Features". Then click next until you reach the Confirmation tab and make sure to check the box that says " Restart the destination server atuomatically if required".Click install. 
+<ol>
+  <li>Log in to the Domain Controller (DC) virtual machine.</li>
+  <li>Open the <strong>Start Menu</strong>, search for <strong>Server Manager</strong>, and launch the application.</li>
+  <li>Once Server Manager is loaded, close any pop-up notifications.</li>
+  <li>Select <strong>"Add roles and features"</strong> from the dashboard.</li>
+  <li>Click <strong>Next</strong> through the initial prompts until you reach the <strong>Server Roles</strong> section.</li>
+  <li>In the <strong>Server Roles</strong> section, check the box for <strong>Active Directory Domain Services</strong>.</li>
+  <li>When prompted, select <strong>"Add Features"</strong>, then continue clicking <strong>Next</strong> until you reach the <strong>Confirmation</strong> screen.</li>
+  <li>On the Confirmation screen, check the box labeled <strong>"Restart the destination server automatically if required"</strong> and click <strong>Install</strong>.</li>
+  <li>Once the installation is complete, click the <strong>flag icon</strong> in the top-right corner of the Server Manager and select <strong>"Promote this server to a domain controller"</strong>.</li>
+  <li>Under the <strong>Deployment Configuration</strong> tab, choose <strong>"Add a new forest"</strong>.</li>
+  <li>In the <strong>Root domain name</strong> field, enter a domain name.
+    <ol>
+      <li>For this lab, use: <code>mydomain.com</code></li>
+    </ol>
+  </li>
+  <li>Click <strong>Next</strong>, then set a simple <strong>Directory Services Restore Mode (DSRM) password</strong>, and click <strong>Next</strong>.</li>
+  <li>On the DNS Options screen, uncheck the box labeled <strong>"Create DNS delegation"</strong>, then click <strong>Next</strong> through the remaining steps.</li>
+  <li>When you reach the <strong>Prerequisites Check</strong> screen, click <strong>Install</strong>.</li>
+  <li>The virtual machine will automatically restart upon completion.</li>
+  <li>After the restart, log back into the VM.
+    <ol>
+      <li>When prompted for the username, use the following format: <code>[domain_name]\[username]</code></li>
+      <li>Example: <code>mydomain.com\labuser</code></li>
+    </ol>
+  </li>
+</ol>
 </p>
 <br />
 
