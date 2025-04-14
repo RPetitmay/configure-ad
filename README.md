@@ -20,11 +20,11 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <h2>Prepare Active Directory Infrastructure within Azure</h2>
 
 - Create Resource Group, Virtual Network and Subnet within Azure
-- Create and configure Domain Controller virtual machine within the resource group
+- Create and configure Domain Controller(DC) virtual machine within the resource group
 - Set Domain Controller VM NIC Private IP Address to static
 - Logon to Domain Controller virtual machine and disable the Windows Firewall
 - Create and configure a Client virtual machine
-- Set Client's VM DNS settings to Domain Controller VM's private IP Address, then restart VM from Azure
+- Set Client's VM DNS settings to Domain Controller(DC) VM's private IP Address, then restart VM from Azure
 - Log into Client VM and attempt to ping Domain Controller's private IP Address, them ping (run "ipconfig /all") within Powershell as an admin
 - Finally, expected result should be the IP Address of the Domain Controller VM
 
@@ -35,7 +35,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 </p>
 <h3>Active Directory Installation</h3>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Logon to DC Vm. Go to start menu and search/find Server Manager Application and open it. Once booted, remove pop-up, then select "Add roles and features". After click next until to reach the Server Roles tab on the left side, select "Active Directory Domain Services"  after that select "Add Features". Then click next until you reach the Confirmation tab and make sure to check the box that says " Restart the destination server atuomatically if required".Click install. 
 </p>
 <br />
 
