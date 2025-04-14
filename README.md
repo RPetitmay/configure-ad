@@ -22,6 +22,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 - Create Resource Group, Virtual Network and Subnet within Azure
 - Create and configure Domain Controller virtual machine within the resource group
 - Set Domain Controller VM NIC Private IP Address to static
+- Logon to Domain Controller virtual machine and disable the Windows Firewall
 - Create and configure a Client virtual machine
 - Set Client's VM DNS settings to Domain Controller VM's private IP Address, then restart VM from Azure
 - Log into Client VM and attempt to ping Domain Controller's private IP Address, them ping (run "ipconfig /all") within Powershell as an admin
