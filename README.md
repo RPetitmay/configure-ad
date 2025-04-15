@@ -11,6 +11,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 - Remote Desktop
 - Active Directory Domain Services
 - PowerShell
+- Notepad/Notes App (Needed for saving usernames and passwords)
 
 <h2>Operating Systems Used </h2>
 
@@ -69,7 +70,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Now will be creating a domain admin user within the domain. Within DC vm click the start menu search/find Active Directory Users and Computers and open up the application. On the left panel hover a right click mydomain.com and then hover over New and the click Organizational Unit(OU). Give the folder a name, this will contain all the user accounts you have access to as admin. For this lab we will name this "_EMPLOYEES". Wihtin this folder will contain access to all employee accounts.  If you chose to change the name of the folder differently make sure to change the script according to the name of the folder you've given  later on in this lab. Next create another Organizational Unit(OU). For this lab we will name this folder "_ADMINS". Within this dolder will contain access to all admins accounts. Now will we create a new employee and add/make them an admin for this domain. For this lab we create an employee name Jane Doe with her own username and password. To do right click the _ADMINS folder and hover over new and select Users. After that fill the necessary information, such as name, username, then click next and then enter a password. For this lab the username for jane doe will be jane_admin
 </p>
 <br />
 
