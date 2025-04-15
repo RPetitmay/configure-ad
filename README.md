@@ -126,9 +126,52 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <br />
 
 <p>
+<img src="https://i.imgur.com/wsNcu9c.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+  <h3>Joining the Client Virtual Machine to the Domain</h3>
+<ol>
+  <li>Log in to the <strong>Client virtual machine</strong>.</li>
+  <li>Right-click the <strong>Start Menu</strong> and select <strong>System</strong>.</li>
+  <li>In the <strong>System Settings</strong> window, locate the <strong>Related settings</strong> section on the right-hand side and click <strong>"Rename this PC (advanced)"</strong>.</li>
+  <li>Under the <strong>Computer Name</strong> tab, click <strong>Change</strong>.</li>
+  <li>In the dialog box that appears:
+    <ol>
+      <li>Under the <strong>Member of</strong> section, select <strong>Domain</strong>.</li>
+      <li>Enter your domain name. For this lab, use: <code>mydomain.com</code>.</li>
+    </ol>
+  </li>
+  <li>Click <strong>OK</strong>. A <strong>Windows Security</strong> prompt will appear requesting domain credentials.</li>
+  <li>Enter the administrator username and password created earlier (e.g., <code>jane_admin</code>).</li>
+  <li>Once authenticated, a confirmation message will appear: <em>"Welcome to the [domain_name] domain."</em></li>
+  <li>Click <strong>OK</strong>, then restart the VM when prompted. The system will automatically reboot.</li>
+  <li>After the restart, log in using the domain admin account if not already logged in. For example: <code>mydomain.com\jane_admin</code>.</li>
+  <li>Open <strong>Active Directory Users and Computers</strong> from the Start Menu.</li>
+  <li>In the left panel, expand the domain (e.g., <code>mydomain.com</code>) and navigate to the <strong>Computers</strong> container.</li>
+  <li>Verify that the <strong>Client VM</strong> appears in the list, confirming that it has successfully joined the domain.</li>
+  <li>(Optional – for organizational purposes): 
+    <ol>
+      <li>Create a new <strong>Organizational Unit (OU)</strong> named <code>_CLIENTS</code>.</li>
+      <li>Click and drag the Client VM into this new OU.</li>
+    </ol>
+  </li>
+</ol>
+</p>
+<br />
+
+<p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
 <br />
+
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</p>
+<br />
+
