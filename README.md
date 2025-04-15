@@ -70,7 +70,58 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Now will be creating a domain admin user within the domain. Within DC vm click the start menu search/find Active Directory Users and Computers and open up the application. On the left panel hover a right click mydomain.com and then hover over New and the click Organizational Unit(OU). Give the folder a name, this will contain all the user accounts you have access to as admin. For this lab we will name this "_EMPLOYEES". Wihtin this folder will contain access to all employee accounts.  If you chose to change the name of the folder differently make sure to change the script according to the name of the folder you've given  later on in this lab. Next create another Organizational Unit(OU). For this lab we will name this folder "_ADMINS". Within this dolder will contain access to all admins accounts. Now will we create a new employee and add/make them an admin for this domain. For this lab we create an employee name Jane Doe with her own username and password. To do right click the _ADMINS folder and hover over new and select Users. After that fill the necessary information, such as name, username, then click next and then enter a password. For this lab the username for jane doe will be jane_admin
+  <h3>Create a Domain Admin User Account</h3>
+<ol>
+  <li>Log in to the Domain Controller (DC) virtual machine.</li>
+  <li>Open the <strong>Start Menu</strong>, search for <strong>Active Directory Users and Computers</strong>, and launch the application.</li>
+  <li>In the left-hand panel, right-click on the domain name (e.g., <code>mydomain.com</code>), hover over <strong>New</strong>, and select <strong>Organizational Unit (OU)</strong>.</li>
+  <li>Name the new Organizational Unit.
+    <ol>
+      <li>For this lab, name it <strong>_EMPLOYEES</strong>.</li>
+      <li>This OU will store all user accounts with standard access privileges.</li>
+      <li>If a different name is used, update any associated scripts or references accordingly.</li>
+    </ol>
+  </li>
+  <li>Repeat the process to create another Organizational Unit.
+    <ol>
+      <li>Name this one <strong>_ADMINS</strong>.</li>
+      <li>This OU will store all accounts with administrative privileges.</li>
+    </ol>
+  </li>
+  <li>Create a new user to act as a domain administrator.
+    <ol>
+      <li>Right-click the <strong>_ADMINS</strong> OU, hover over <strong>New</strong>, and select <strong>User</strong>.</li>
+      <li>Enter the user's full name and username.
+        <ol>
+          <li><strong>Name:</strong> Jane Doe</li>
+          <li><strong>Username:</strong> <code>jane_admin</code></li>
+        </ol>
+      </li>
+      <li>Click <strong>Next</strong>, enter a password, and select <strong>Password never expires</strong>.
+        <ol>
+          <li><em>Note: Selecting "Password never expires" is not recommended in production environments.</em></li>
+        </ol>
+      </li>
+      <li>Click <strong>Finish</strong> to complete the user creation process.</li>
+    </ol>
+  </li>
+  <li>Verify the user was created by checking the <strong>_ADMINS</strong> folder for <code>jane_admin</code>.</li>
+  <li>Grant domain admin privileges to the new user.
+    <ol>
+      <li>Right-click the user <code>jane_admin</code> and select <strong>Properties</strong>.</li>
+      <li>Navigate to the <strong>Member Of</strong> tab.</li>
+      <li>Click <strong>Add</strong>, type <code>Domain Admins</code>, and click <strong>Check Names</strong>.</li>
+      <li>Click <strong>OK</strong>, then <strong>Apply</strong>, and finally <strong>OK</strong> again.</li>
+    </ol>
+  </li>
+  <li>Log out and disconnect from the DC virtual machine.</li>
+  <li>Log back in using the new domain admin credentials.
+    <ol>
+      <li>Use the following login format: <code>mydomain.com\jane_admin</code></li>
+    </ol>
+  </li>
+  <li>From this point forward in the lab, use the <code>jane_admin</code> account for all administrative tasks.</li>
+</ol>
 </p>
 <br />
 
