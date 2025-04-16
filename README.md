@@ -160,10 +160,20 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/zpZpjvP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  <h3>Setting up Remote Desktop to non-administrative users in the Client Virtual Machine</h3>
+<ol>
+  <li>Log in to the <strong>Client VM</strong> using the domain administrator account: <code>mydomain.com\jane_admin</code>.</li>
+  <li>Right-click the <strong>Start Menu</strong> and select <strong>System</strong>.</li>
+  <li>On the right-hand panel under <strong>Related settings</strong>, click <strong>Remote Desktop</strong>.</li>
+  <li>In the <strong>Remote Desktop</strong> settings, scroll to the <strong>User accounts</strong> section and click <strong>"Select users that can remotely access this PC"</strong>.</li>
+  <li>In the dialog box, click <strong>Add</strong>.</li>
+  <li>Type <code>Domain Users</code> into the text box.</li>
+  <li>Click <strong>Check Names</strong> to validate the group name.</li>
+  <li>Click <strong>OK</strong>, and then click <strong>OK</strong> again to save the configuration.</li>
+</ol>
 </p>
 <br />
 
