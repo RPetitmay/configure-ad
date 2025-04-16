@@ -153,6 +153,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
     <ol>
       <li>Create a new <strong>Organizational Unit (OU)</strong> named <code>_CLIENTS</code>.</li>
       <li>Click and drag the Client VM into this new OU.</li>
+      <li>Logout</li>
     </ol>
   </li>
 </ol>
@@ -173,6 +174,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
   <li>Type <code>Domain Users</code> into the text box.</li>
   <li>Click <strong>Check Names</strong> to validate the group name.</li>
   <li>Click <strong>OK</strong>, and then click <strong>OK</strong> again to save the configuration.</li>
+  <li>Logout</li>
 </ol>
 </p>
 <br />
@@ -181,7 +183,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+For this section will we be creating a many users/user accounts using ssa script and attempting to log into client vm using one of the users/user accounts geenerated. Logon into DC vm as admin (for this lab: mydomain.com\jane_admin). Next to the start menu search up Windows Powershell ISE, hover over application and right-click and click Run as administrator. Once opened Powershell ISE is open on the top-left corner next to edit click on view and then click on Show Script Pane. 
 </p>
 <br />
 
