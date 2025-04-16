@@ -180,10 +180,38 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/gow6d6X.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-For this section will we be creating a many users/user accounts using ssa script and attempting to log into client vm using one of the users/user accounts geenerated. Logon into DC vm as admin (for this lab: mydomain.com\jane_admin). Next to the start menu search up Windows Powershell ISE, hover over application and right-click and click Run as administrator. Once opened Powershell ISE is open on the top-left corner next to edit click on view and then click on Show Script Pane. 
+  <h3>Bulk User Account Creation via PowerShell Script and Login Verification</h3>
+<ol>
+  <li>Log in to the <strong>Domain Controller (DC) VM</strong> using the admin account: <code>mydomain.com\jane_admin</code>.</li>
+  <li>Open the <strong>Start Menu</strong>, search for <strong>Windows PowerShell ISE</strong>, right-click the application, and select <strong>Run as administrator</strong>.</li>
+  <li>Once PowerShell ISE is open, click on <strong>View</strong> in the top menu and select <strong>Show Script Pane</strong>.</li>
+  <li>Open the following link in a new browser tab: 
+    <a href="https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1" target="_blank">
+      Generate-Names-Create-Users.ps1
+    </a>
+  </li>
+  <li>Copy the contents of the script and paste them into a new file in PowerShell ISE. Save the script file.</li>
+  <li>Before running the script, press <strong>Ctrl + F</strong> to search for the word <code>Path</code> in the script.</li>
+  <li>Verify that the <strong>OU path</strong> used in the script matches the folder name created earlier in the lab.
+    <ol>
+      <li>For this lab, the OU folder is named <strong>_EMPLOYEES</strong>.</li>
+      <li>Ensure the name is spelled correctly with no typos or extra spaces.</li>
+    </ol>
+  </li>
+  <li>Click the <strong>green play button</strong> at the top of PowerShell ISE to run the script.</li>
+  <li>The script will generate multiple user accounts with randomized usernames. Each will be assigned the password <code>Password1</code>.</li>
+  <li>Open <strong>Active Directory Users and Computers</strong> and navigate to the <strong>_EMPLOYEES</strong> OU folder to confirm the user accounts were created.</li>
+  <li>Choose any of the newly created users and log in to the <strong>Client VM</strong> using the following format:
+    <ol>
+      <li>Username format: <code>mydomain.com\random_username</code></li>
+      <li>Password: <code>Password1</code></li>
+    </ol>
+  </li>
+  <li>After a successful login, log out of the Client VM.</li>
+</ol>
 </p>
 <br />
 
