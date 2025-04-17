@@ -294,7 +294,6 @@ This tutorial outlines the implementation of on-premises Active Directory within
 </p>
 <br />
 
-
 <p>
 <img src="https://i.imgur.com/gow6d6X.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
