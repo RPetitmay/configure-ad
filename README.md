@@ -216,29 +216,72 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <br />
 
 <p>
+<img src="https://i.imgur.com/HupYrKG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+  <h3>Demonstrating Account Lockouts and Recovery in Active Directory</h3>
+<ol>
+  <li>Log in to the <strong>DC VM</strong> as administrator (<code>mydomain.com\jane_admin</code>).</li>
+  <li>Open the <strong>Start Menu</strong>, search for <strong>Active Directory Users and Computers (ADUC)</strong>, and launch it.</li>
+  <li>Navigate to the <strong>_EMPLOYEES</strong> OU and select a random user (e.g., <code>mun.far</code>).</li>
+  <li>Switch to the <strong>Client VM</strong> and log in with:
+    <ul>
+      <li>Username: <code>mydomain.com\mun.far</code></li>
+      <li>Password: <code>Password1</code></li>
+    </ul>
+  </li>
+  <li>Log out after the successful login.</li>
+  <li>Return to the <strong>DC VM</strong> and search for <strong>Group Policy Management (GPM)</strong>. Launch it.</li>
+  <li>Expand the forest and domain tree, right-click <strong>Default Domain Policy</strong>, and click <strong>Edit</strong>.</li>
+  <li>In the <strong>Group Policy Management Editor (GPME)</strong>, navigate to:
+    <ul>
+      <li><strong>Computer Configuration</strong> → <strong>Policies</strong> → <strong>Windows Settings</strong> → <strong>Security Settings</strong> → <strong>Account Policies</strong> → <strong>Account Lockout Policy</strong></li>
+    </ul>
+  </li>
+  <li>Edit each policy by double-clicking and checking <strong>"Define this policy setting"</strong>. Set the following:
+    <ul>
+      <li>Account Lockout Duration: 30 minutes</li>
+      <li>Account Lockout Threshold: 5 invalid logon attempts</li>
+      <li>Allow Administrator Account Lockout: Enabled</li>
+      <li>Reset Account Lockout Counter After: 10 minutes</li>
+    </ul>
+  </li>
+  <li>To verify the changes, go to <strong>Default Domain Policy</strong> in GPM, select the <strong>Settings</strong> tab, and scroll to <strong>Account Lockout Policy</strong>.</li>
+  <li>Log in to the <strong>Client VM</strong> as <code>mydomain.com\jane_admin</code>.</li>
+  <li>Open <strong>Command Prompt</strong> as Administrator and run:
+    <ul>
+      <li><code>gpupdate /force</code></li>
+      <li>Then: <code>gpresult /r</code></li>
+    </ul>
+    Verify under <strong>Computer Settings → Applied Group Policy Objects</strong> that <strong>Default Domain Policy</strong> is listed.
+  </li>
+  <li>Log out and simulate an account lockout by entering an incorrect password for <code>mun.far</code> at least 6 times.</li>
+  <li>Return to <strong>ADUC</strong> on the DC VM, right-click the domain, select <strong>Find</strong>, search for <code>mun.far</code>, and open the user account.</li>
+  <li>Go to the <strong>Account</strong> tab, check <strong>"Unlock account"</strong>, click <strong>Apply</strong>, and then <strong>OK</strong>.</li>
+  <li>Log into the <strong>Client VM</strong> again with the correct credentials.</li>
+  <li>To reset the user’s password:
+    <ul>
+      <li>Right-click the user in ADUC, select <strong>Reset Password</strong>, enter and confirm a new password, and click <strong>OK</strong>.</li>
+    </ul>
+  </li>
+  <li>Log into the <strong>Client VM</strong> using the new password to verify the change was successful.</li>
+</ol>
+<br />
+<p>
 <img src="https://i.imgur.com/gow6d6X.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-  <h3>Dealing with account lockouts</h3>
+  <h3>Enabling and Disabling Accounts</h3>
 
 </p>
 <br />
 
-<p>
-<img src="https://i.imgur.com/gow6d6X.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-  <h3>Dealing with account lockouts</h3>
-
-</p>
-<br />
-
 
 <p>
 <img src="https://i.imgur.com/gow6d6X.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-  <h3>Dealing with account lockouts</h3>
+  <h3>Observing Logs</h3>
 
 </p>
 <br />
