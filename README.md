@@ -295,10 +295,26 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <br />
 
 <p>
-<img src="https://i.imgur.com/gow6d6X.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/53yy0xC.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-  <h3>Observing Logs</h3>
-
+  <h3>Viewing Security Logs Related to User Activity in Event Viewer</h3>
+<ol>
+  <li>Log in to the <strong>Domain Controller (DC) VM</strong> as an administrator (if not already logged in).</li>
+  <li>Open the <strong>Start Menu</strong>, search for <strong>Event Viewer</strong>, and launch the application.</li>
+  <li>In the left panel, expand <strong>Windows Logs</strong> and click on <strong>Security</strong> to view event logs.</li>
+  <li>To search for logs related to a specific user:
+    <ol>
+      <li>Right-click on <strong>Security</strong> and select <strong>Find</strong>.</li>
+      <li>Enter the username (e.g., <code>mun.far</code>) and click <strong>Find Next</strong>.</li>
+      <li>Continue to click <strong>Find Next</strong> to view all matching log entries.</li>
+    </ol>
+  </li>
+  <li>If relevant log entries are not found on the DC VM, switch to the <strong>Client VM</strong>.</li>
+  <li>Log in to the <strong>Client VM</strong> as an administrator.</li>
+  <li>Search for and open <strong>Event Viewer</strong>.</li>
+  <li>Expand <strong>Windows Logs</strong> and click on <strong>Security</strong>.</li>
+  <li>Scroll through the event list and look for multiple <strong>Audit Failure</strong> entries, indicating failed login attempts.</li>
+</ol>
 </p>
 <br />
