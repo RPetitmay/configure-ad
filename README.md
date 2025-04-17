@@ -268,11 +268,29 @@ This tutorial outlines the implementation of on-premises Active Directory within
 </ol>
 <br />
 <p>
-<img src="https://i.imgur.com/gow6d6X.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/skAf71a.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-  <h3>Enabling and Disabling Accounts</h3>
-
+  <h3>Demonstrating How to Disable and Enable a User Account in Active Directory</h3>
+<ol>
+  <li>Log in to the <strong>Domain Controller (DC) VM</strong>.</li>
+  <li>Open <strong>Active Directory Users and Computers (ADUC)</strong>.</li>
+  <li>Right-click the domain (e.g., <code>mydomain.com</code>) and select <strong>Find</strong>.</li>
+  <li>Search for the user account you wish to disable.</li>
+  <li>Right-click the user and select <strong>Disable Account</strong>.</li>
+  <li>Switch to the <strong>Client VM</strong> and attempt to log in with the disabled user account.
+    <ul>
+      <li>The login attempt should fail due to the account being disabled.</li>
+    </ul>
+  </li>
+  <li>Return to the <strong>DC VM</strong> and go back to <strong>ADUC</strong>.</li>
+  <li>Locate the same user account, right-click it, and select <strong>Enable Account</strong>.</li>
+  <li>Switch back to the <strong>Client VM</strong> and try logging in again.
+    <ul>
+      <li>The login should now succeed.</li>
+    </ul>
+  </li>
+</ol>
 </p>
 <br />
 
