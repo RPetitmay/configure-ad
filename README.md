@@ -324,7 +324,51 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img src="https://i.imgur.com/FY2B3Vq.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-So for this section, login to both the client vm and DC vm with admin account: mydomain.com\jane_admin. Within the client vm attempt to ping a random name: "mainframe" and observe it to fail to ping. To do so from the start menu search for Windows Powershell, open the application. Once the application is opened type "ping mainframe" . This is to demontrate the understanding of DNS and how your computer goes about interacting with a hostname over a network. Three things your computer does when it is pinging a name or hostname is check Local DNS Cache. To see the local dns cache type "ipconfig /display dns".Then if it is not found it will check the Local Host File and then if nothing is found over there it check the DNS Server.  Now type "nslookup mainframe" and observe it fail. Now we are going to make mainframe pingable. To do so we will create a DNS A-record on DC for “mainframe” and have it point to DC's Private IP address(10.0.0.4). Go to dc vm and go to the start menu and search DNS and open appilcation. On the left panel click on dc-1. Expand the Foward Lookup Zones folder and within this folder hover over and right-click on mydomain.com and then clikc New Host (A or AAAA). Now fill in the following, Name: mainframe, IP Address: 10.0.0.4 and then click Add Host and then click Ok. Now go back to client vm and when you type ping mainframe, it will not fail and the IP Address will display. 
+  <h3>Demonstrating DNS Resolution, A-Record Creation, and CNAME Aliasing</h3>
+<ol>
+  <li>Log in to both the <strong>Client VM</strong> and <strong>DC VM</strong> as <code>mydomain.com\jane_admin</code>.</li>
+  <li>On the Client VM, open <strong>Windows PowerShell</strong> as Administrator.</li>
+  <li>Type <code>ping mainframe</code> and observe that it fails to resolve the name.</li>
+  <li>Type <code>ipconfig /displaydns</code> to view the local DNS cache.</li>
+  <li>Type <code>nslookup mainframe</code> to verify that the hostname cannot be resolved.</li>
+  <li>Switch to the DC VM and open the <strong>DNS Manager</strong> application.</li>
+  <li>In DNS Manager:
+    <ol>
+      <li>Expand <strong>Forward Lookup Zones</strong>.</li>
+      <li>Right-click <code>mydomain.com</code> and select <strong>New Host (A or AAAA)</strong>.</li>
+      <li>Enter:
+        <ul>
+          <li><strong>Name:</strong> mainframe</li>
+          <li><strong>IP Address:</strong> 10.0.0.4</li>
+        </ul>
+      </li>
+      <li>Click <strong>Add Host</strong> and then <strong>OK</strong>.</li>
+    </ol>
+  </li>
+  <li>Back on the Client VM, run <code>ping mainframe</code> and verify it resolves to 10.0.0.4.</li>
+  <li>On the DC VM, go back to DNS Manager, locate the <code>mainframe</code> record, and update its IP to 8.8.8.8.</li>
+  <li>On the Client VM, run <code>ping mainframe</code> and observe it still resolves to 10.0.0.4 due to DNS caching.</li>
+  <li>Type <code>ipconfig /displaydns</code> to confirm the old IP is still cached.</li>
+  <li>Flush the DNS cache by running <code>ipconfig /flushdns</code>.</li>
+  <li>Run <code>ipconfig /displaydns</code> again to verify the cache is cleared.</li>
+  <li>Ping <code>mainframe</code> again and confirm it now resolves to 8.8.8.8.</li>
+  <li>On the DC VM, open DNS Manager and right-click <code>mydomain.com</code>, then select <strong>New Alias (CNAME)</strong>.</li>
+  <li>Enter:
+    <ul>
+      <li><strong>Alias Name:</strong> search</li>
+      <li><strong>FQDN:</strong> www.google.com</li>
+    </ul>
+    Click <strong>OK</strong>.
+  </li>
+  <li>On the Client VM, run:
+    <ul>
+      <li><code>ping search</code></li>
+      <li><code>nslookup search</code></li>
+    </ul>
+    to confirm that the alias resolves to <code>www.google.com</code>.
+  </li>
+</ol>
+
 
 </p>
 <br />
