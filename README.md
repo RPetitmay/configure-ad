@@ -3,7 +3,7 @@
 </p>
 
 <h1>On-premises Active Directory Deployed in the Cloud (Azure)</h1>
-This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines. We will also demonstrate the understanding of DNS, Network Files Shares and Permissions.<br />
+This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines. We will also demonstrate the understanding of DNS, Network File Shares and Permissions.<br />
 
 <h2>Environments and Technologies Used</h2>
 
@@ -368,8 +368,84 @@ This tutorial outlines the implementation of on-premises Active Directory within
     to confirm that the alias resolves to <code>www.google.com</code>.
   </li>
 </ol>
-
-
 </p>
 <br />
 
+<p>
+<img src="https://i.imgur.com/LCoN2sB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+  <h3>File Sharing and Permission Management in a Windows Domain Environment</h3>
+<ol>
+    <li>Log in to the <strong>Domain Controller (DC) VM</strong> using the administrator account (<code>mydomain.com\jane_admin</code>).</li>
+    <li>Open <strong>Active Directory Users and Computers (ADUC)</strong> from the Start Menu.</li>
+    <li>Navigate to the <strong>_EMPLOYEES</strong> Organizational Unit and select a previously created random user account.</li>
+    <li>Log in to the <strong>Client VM</strong> using the selected user account.</li>
+    <li>On the <strong>DC VM</strong>, open <strong>File Explorer</strong> via the Start Menu or press <kbd>Ctrl</kbd> + <kbd>E</kbd>.</li>
+    <li>Navigate to the <strong>C:\</strong> drive and create four folders:
+      <ol>
+        <li>read-access</li>
+        <li>write-access</li>
+        <li>no-access</li>
+        <li>accounting</li>
+      </ol>
+    </li>
+    <li>Configure folder sharing permissions:
+      <ol>
+        <li><strong>read-access</strong>: Group = <code>Domain Users</code>, Permission = Read</li>
+        <li><strong>write-access</strong>: Group = <code>Domain Users</code>, Permission = Read/Write</li>
+        <li><strong>no-access</strong>: Group = <code>Domain Admins</code>, Permission = Read/Write</li>
+      </ol>
+    </li>
+    <li>To set permissions:
+      <ol>
+        <li>Right-click each folder → <strong>Properties</strong> → <strong>Sharing</strong> tab</li>
+        <li>Click <strong>Share…</strong>, add the appropriate group, set permissions</li>
+        <li>Click <strong>Share</strong> and then <strong>Done</strong></li>
+      </ol>
+    </li>
+    <li>On the <strong>Client VM</strong>, open <strong>File Explorer</strong> and type <code>\\&lt;Domain_Controller_Name&gt;</code> (e.g., <code>\\dc-1</code>) in the address bar.</li>
+    <li>Test access to the shared folders:
+      <ol>
+        <li>Try creating a text document in <strong>read-access</strong> (should fail)</li>
+        <li>Create a text document in <strong>write-access</strong> (should succeed)</li>
+        <li>Attempt to open <strong>no-access</strong> (should be denied)</li>
+      </ol>
+    </li>
+    <li>On the <strong>DC VM</strong>, go to ADUC and (optionally) create a new OU named <strong>_GROUPS</strong>.</li>
+    <li>Right-click <strong>_GROUPS</strong> → <strong>New</strong> → <strong>Group</strong>
+      <ol>
+        <li>Group Name: ACCOUNTANTS</li>
+        <li>Group Scope: Global</li>
+        <li>Group Type: Security</li>
+        <li>Click <strong>OK</strong></li>
+      </ol>
+    </li>
+    <li>Assign permissions to the <strong>accounting</strong> folder:
+      <ol>
+        <li>Right-click folder → <strong>Properties</strong> → <strong>Sharing</strong> tab → <strong>Share…</strong></li>
+        <li>Add <code>ACCOUNTANTS</code> group with Read/Write permissions</li>
+        <li>Click <strong>Share</strong>, then <strong>Done</strong></li>
+      </ol>
+    </li>
+    <li>On the <strong>Client VM</strong>, access <code>\\dc-1</code> again via File Explorer.</li>
+    <li>If the <strong>accounting</strong> folder is not visible, click the refresh icon.</li>
+    <li>Attempt to open the <strong>accounting</strong> folder (access should be denied).</li>
+    <li>On the <strong>DC VM</strong>, go back to ADUC and:
+      <ol>
+        <li>Right-click <strong>_EMPLOYEES</strong> → <strong>Find</strong> → search for the user</li>
+        <li>Right-click the user → <strong>Add to a group</strong> → enter <code>ACCOUNTANTS</code></li>
+        <li>Click <strong>Check Names</strong> → <strong>OK</strong></li>
+      </ol>
+    </li>
+    <li>(Optional) Verify group membership:
+      <ol>
+        <li>Go to <strong>_GROUPS</strong> → right-click <strong>ACCOUNTANTS</strong> → <strong>Properties</strong></li>
+        <li>Select the <strong>Members</strong> tab to confirm the user is listed</li>
+      </ol>
+    </li>
+    <li>Log in to the <strong>Client VM</strong> as the updated user and navigate to the <strong>accounting</strong> folder.</li>
+    <li>Attempt to create a text document (should succeed).</li>
+  </ol>
+</p>
+<br />
