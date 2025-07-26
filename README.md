@@ -26,7 +26,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 - Logon to Domain Controller virtual machine and disable the Windows Firewall
 - Create and configure a Client virtual machine
 - Set Client's VM DNS settings to Domain Controller(DC) VM's private IP Address, then restart VM from Azure
-- Log into Client VM and attempt to ping Domain Controller's private IP Address, them ping (run "ipconfig /all") within Powershell as an admin
+- Log into Client VM and attempt to ping Domain Controller's private IP Address, then ping (run "ipconfig /all") within Powershell as an admin
 - Finally, expected result should be the IP Address of the Domain Controller VM
 
 <h2>Deployment and Configuration Steps</h2>
