@@ -16,7 +16,7 @@
 - Windows Server 2022
 - Windows 10
 
-<h2>Prepare Active Directory Infrastructure within Hyper-V Manager </h2>
+<h2>Prepare Virtual Machine and Domain Controller for this project </h2>
 
 - Create and configure Domain Controller(DC) virtual machine and Windows virtual machine
 - Set up Active Directory Domain Services within the DC virtual machine.
